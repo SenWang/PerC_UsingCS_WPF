@@ -25,32 +25,27 @@ namespace PerC_UsingCS_WPF
             Loaded += MainWindow_Loaded;
             Unloaded += MainWindow_Unloaded;
         }
-
         MyPipeline pipeline;
         void MainWindow_Unloaded(object sender, RoutedEventArgs e)
         {
             if (pipeline != null)
-                pipeline.Dispose();
-            
+                pipeline.Dispose();           
         }
         async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             mainwin = this;
             await PipelineSetupAsync();            
         }
-
         Task<bool> PipelineSetupAsync()
         {
             return Task.Run(() => PipelineSetup());
         }
-
         bool PipelineSetup()
         {
             pipeline = new MyPipeline();
             pipeline.LoopFrames();
             return true;
         }
-
         public void ProcessDepthImage(BitmapSource source)
         {
             Debug.WriteLine("深度影像 :" + source);

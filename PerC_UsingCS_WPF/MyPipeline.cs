@@ -13,8 +13,7 @@ namespace PerC_UsingCS_WPF
 {
     class MyPipeline : UtilMPipeline
     {
-        public MyPipeline()
-            : base()
+        public MyPipeline() : base()
         {
             EnableImage(PXCMImage.ColorFormat.COLOR_FORMAT_RGB32);
             EnableImage(PXCMImage.ColorFormat.COLOR_FORMAT_DEPTH);
@@ -31,10 +30,8 @@ namespace PerC_UsingCS_WPF
             else if (image.imageInfo.format == PXCMImage.ColorFormat.COLOR_FORMAT_RGB24)
                 MainWindow.mainwin.ProcessColorImage(source);
 
-            //base.OnImage(image);
+            image.Dispose();
         }
-
-
         public static BitmapSource ToWpfBitmap(Bitmap bitmap)
         {
             using (MemoryStream stream = new MemoryStream())
